@@ -6,11 +6,21 @@
         xmlns:local="clr-namespace:WPF_showcase"
         mc:Ignorable="d"
         Title="Kalendarz" Height="450" Width="800">
-    <Viewbox HorizontalAlignment="Left" Margin="10,10,0,10" Width="380">
-        <Calendar/>
-    </Viewbox>
-    <!--<Grid>
-        <Calendar HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="399" Width="331"/>
-
-    </Grid>-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition>
+                <ColumnDefinition.Width>390</ColumnDefinition.Width>
+            </ColumnDefinition>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Viewbox HorizontalAlignment="Left" Margin="10,10,10,10" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+            <Calendar HorizontalAlignment="Center"/>
+        </Viewbox>
+        <TextBlock></TextBlock>
+    </Grid>
 </Window>
