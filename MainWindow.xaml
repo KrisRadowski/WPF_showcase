@@ -8,19 +8,21 @@
         Title="Kalendarz" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition>
-                <ColumnDefinition.Width>390</ColumnDefinition.Width>
-            </ColumnDefinition>
+            <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="345*"/>
+            <RowDefinition Height="45*"/>
         </Grid.RowDefinitions>
-        <Viewbox HorizontalAlignment="Left" Margin="10,10,10,10" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+        <Viewbox HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Width="370">
             <Calendar HorizontalAlignment="Center"/>
         </Viewbox>
-        <TextBlock></TextBlock>
+        <TextBlock Grid.Column="1" FontSize="24" FontWeight="Bold" Margin="0,0,0,0" HorizontalAlignment="Center">
+            data
+        </TextBlock>
+        <DataGrid Grid.Column="1" Margin="10" Grid.Row="1"/>
+        <Button Content="Dodaj wpis" Grid.Column="1" HorizontalAlignment="Center" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Center" Width="auto" FontSize="24"/>
     </Grid>
 </Window>
