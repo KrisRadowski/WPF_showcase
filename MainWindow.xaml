@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_showcase"
         mc:Ignorable="d"
-        Title="Kalendarz" Height="450" Width="800">
-    <Grid>
+        Title="Kalendarz" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="entryViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Entry}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource entryViewSource}">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -19,10 +23,11 @@
         <Viewbox HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Width="370">
             <Calendar HorizontalAlignment="Center"/>
         </Viewbox>
-        <TextBlock Grid.Column="1" FontSize="24" FontWeight="Bold" Margin="0,0,0,0" HorizontalAlignment="Center">
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" FontSize="24" FontWeight="Bold" Margin="0,0,0,0" HorizontalAlignment="Center">
             data
         </TextBlock>
-        <DataGrid Grid.Column="1" Margin="10" Grid.Row="1"/>
-        <Button Content="Dodaj wpis" Grid.Column="1" HorizontalAlignment="Center" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Center" Width="auto" FontSize="24"/>
+        <DataGrid Grid.Column="1" Grid.ColumnSpan="2" Margin="10" Grid.Row="1" ItemsSource="{Binding}"/>
+        <Button Content="Dodaj wpis" Click="AddEntryClick" Grid.Column="1" HorizontalAlignment="Center" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Center" Width="auto" FontSize="24"/>
+        <Button Content="Usuń wpis" Click="DeleteEntryClick" Grid.Column="2" HorizontalAlignment="Center" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Center" Width="auto" FontSize="24" IsEnabled="False"/>
     </Grid>
 </Window>

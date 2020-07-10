@@ -24,5 +24,25 @@ namespace WPF_showcase
 		{
 			InitializeComponent();
 		}
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+
+			System.Windows.Data.CollectionViewSource entryViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("entryViewSource")));
+			// Załaduj dane poprzez ustawienie właściwości CollectionViewSource.Source:
+			// entryViewSource.Źródło = [ogólne źródło danych]
+		}
+
+		private void AddEntryClick(object sender, RoutedEventArgs e)
+		{
+			AddEntry addEntry = new AddEntry();
+			addEntry.Owner = this;
+			addEntry.Show();
+		}
+
+		private void DeleteEntryClick(object sender, RoutedEventArgs e)
+		{
+			
+		}
 	}
 }
