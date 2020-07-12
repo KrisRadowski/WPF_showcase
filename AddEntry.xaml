@@ -7,6 +7,30 @@
         mc:Ignorable="d"
         Title="AddEntry" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock>
+            Data
+        </TextBlock>
+        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="117,57,0,0" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="2">
+           Czas
+        </TextBlock>
+        <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <TextBox/>
+            <StackPanel Orientation="Vertical">
+                <Button>^</Button>
+                <Button>V</Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
