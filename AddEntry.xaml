@@ -19,18 +19,18 @@
             <RowDefinition Height="35*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <TextBlock>
+        <TextBlock VerticalAlignment="Center">
             Data: 
         </TextBlock>
-        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="2">
+        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="2" VerticalAlignment="Center">
            Czas
         </TextBlock>
         <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-            <TextBox Width="50" Text="08:00" IsEnabled="False"/>
+            <TextBox x:Name="timeTextBox" Width="50" Text="08:00" IsEnabled="False"/>
             <StackPanel Orientation="Vertical">
-                <ToggleButton>↑</ToggleButton>
-                <ToggleButton>↓</ToggleButton>
+                <RepeatButton x:Name="upButton" Click="UpButton_Click">↑</RepeatButton>
+                <RepeatButton x:Name="downButton" Click="DownButton_Click">↓</RepeatButton>
             </StackPanel>
         </StackPanel>
         <TextBlock Grid.Row="1">
