@@ -5,32 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_showcase"
         mc:Ignorable="d"
-        Title="AddEntry" Height="450" Width="800">
+        Title="AddEntry" Height="450" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <TextBlock>
-            Data
+            Data: 
         </TextBlock>
-        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="117,57,0,0" VerticalAlignment="Top"/>
+        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="2">
            Czas
         </TextBlock>
         <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-            <TextBox/>
+            <TextBox Width="50" Text="08:00" IsEnabled="False"/>
             <StackPanel Orientation="Vertical">
-                <Button>^</Button>
-                <Button>V</Button>
+                <ToggleButton>↑</ToggleButton>
+                <ToggleButton>↓</ToggleButton>
             </StackPanel>
         </StackPanel>
+        <TextBlock Grid.Row="1">
+            Opis:
+        </TextBlock>
+        <TextBox Grid.Row="2" Grid.ColumnSpan="4"/>
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">Zapisz</Button>
     </Grid>
 </Window>
