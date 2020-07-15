@@ -9,14 +9,15 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="35*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <TextBlock VerticalAlignment="Center">
@@ -24,19 +25,33 @@
         </TextBlock>
         <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="2" VerticalAlignment="Center">
-           Czas
+           Czas:
         </TextBlock>
         <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
             <TextBox x:Name="timeTextBox" Width="50" Text="08:00" IsEnabled="False"/>
             <StackPanel Orientation="Vertical">
-                <RepeatButton x:Name="upButton" Click="UpButton_Click">↑</RepeatButton>
-                <RepeatButton x:Name="downButton" Click="DownButton_Click">↓</RepeatButton>
+                <RepeatButton Click="UpButton_Click">↑</RepeatButton>
+                <RepeatButton Click="DownButton_Click">↓</RepeatButton>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock Grid.Row="3" VerticalAlignment="Center">
+            Alarm: 
+        </TextBlock>
+        <DatePicker Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">
+             Czas:
+        </TextBlock>
+        <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <TextBox x:Name="alarmTextBox" Width="50" Text="08:00" IsEnabled="False"/>
+            <StackPanel Orientation="Vertical">
+                <RepeatButton Click="UpButton_Click">↑</RepeatButton>
+                <RepeatButton Click="DownButton_Click">↓</RepeatButton>
             </StackPanel>
         </StackPanel>
         <TextBlock Grid.Row="1">
             Opis:
         </TextBlock>
         <TextBox Grid.Row="2" Grid.ColumnSpan="4"/>
-        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">Zapisz</Button>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">Zapisz</Button>
     </Grid>
 </Window>

@@ -29,7 +29,7 @@ namespace WPF_showcase
 	    public int Id { get; set; }
 	    public DateTime EntryDate { get; set; }
 		public string EntryContent { get; set; }
-		public virtual List<Alarm> Alarms { get; set; }
+		public virtual Alarm Alarm { get; set; }
 	}
 
 	public class Alarm

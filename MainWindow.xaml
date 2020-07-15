@@ -21,7 +21,7 @@
             <RowDefinition Height="45*"/>
         </Grid.RowDefinitions>
         <Viewbox HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Width="370">
-            <Calendar HorizontalAlignment="Center"/>
+            <Calendar SelectedDatesChanged="LoadData" HorizontalAlignment="Center"/>
         </Viewbox>
         <TextBlock Grid.Column="1" Grid.ColumnSpan="2" FontSize="24" FontWeight="Bold" Margin="0,0,0,0" HorizontalAlignment="Center">
             data

@@ -44,5 +44,10 @@ namespace WPF_showcase
 		{
 			
 		}
-	}
+
+        private void LoadData(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+    }
 }
