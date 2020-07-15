@@ -66,7 +66,7 @@ namespace WPF_showcase
 
 			}
 			else dateTime = dateTime.AddMinutes(-15);
-			tbText = dateTime.ToString("HH:mm");
+			tb.Text = dateTime.ToString("HH:mm");
 		}
 	}
 }
