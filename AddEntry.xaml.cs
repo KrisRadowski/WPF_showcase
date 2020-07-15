@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -25,32 +26,47 @@ namespace WPF_showcase
 			InitializeComponent();
 		}
 
-		DateTime GetTimeFromTextBox() {
-			string time = timeTextBox.Text;
+		DateTime GetTimeFromTextBox(TextBox tb) {
+			string time = tb.Text;
 			DateTime dateTime = DateTime.ParseExact(time,"HH:mm",CultureInfo.InvariantCulture);
             return dateTime;
 		}
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
-			DateTime dateTime = GetTimeFromTextBox();
+			TextBox tb = null;
+			if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("timeStackPanel")) {
+				tb = timeTextBox;
+			} else if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("alarmStackPanel")) {
+				tb = alarmTextBox;
+			}
+			DateTime dateTime = GetTimeFromTextBox(tb);
 			if (dateTime.Hour == 23 && dateTime.Minute == 45)
 			{
 
 			}
 			else dateTime = dateTime.AddMinutes(15);
-			timeTextBox.Text = dateTime.ToString("HH:mm");
+			tb.Text = dateTime.ToString("HH:mm");
         }
 
 		private void DownButton_Click(object sender, RoutedEventArgs e)
 		{
-			DateTime dateTime = GetTimeFromTextBox();
+			TextBox tb = null;
+			if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("timeStackPanel"))
+			{
+				tb = timeTextBox;
+			}
+			else if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("alarmStackPanel"))
+			{
+				tb = alarmTextBox;
+			}
+			DateTime dateTime = GetTimeFromTextBox(tb);
 			if (dateTime.Hour == 0 && dateTime.Minute == 0)
 			{
 
 			}
 			else dateTime = dateTime.AddMinutes(-15);
-			timeTextBox.Text = dateTime.ToString("HH:mm");
+			tbText = dateTime.ToString("HH:mm");
 		}
 	}
 }

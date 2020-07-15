@@ -27,9 +27,9 @@
         <TextBlock Grid.Column="2" VerticalAlignment="Center">
            Czas:
         </TextBlock>
-        <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <StackPanel  Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch" AutomationProperties.Name="timeStackPanel">
             <TextBox x:Name="timeTextBox" Width="50" Text="08:00" IsEnabled="False"/>
-            <StackPanel Orientation="Vertical">
+            <StackPanel x:Name="timeStackPanel" Orientation="Vertical">
                 <RepeatButton Click="UpButton_Click">↑</RepeatButton>
                 <RepeatButton Click="DownButton_Click">↓</RepeatButton>
             </StackPanel>
@@ -41,9 +41,9 @@
         <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">
              Czas:
         </TextBlock>
-        <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <StackPanel  Grid.Row="3" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
             <TextBox x:Name="alarmTextBox" Width="50" Text="08:00" IsEnabled="False"/>
-            <StackPanel Orientation="Vertical">
+            <StackPanel x:Name="alarmStackPanel" Orientation="Vertical">
                 <RepeatButton Click="UpButton_Click">↑</RepeatButton>
                 <RepeatButton Click="DownButton_Click">↓</RepeatButton>
             </StackPanel>
