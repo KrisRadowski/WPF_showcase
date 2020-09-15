@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,6 +21,8 @@ namespace WPF_showcase
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private DBModel _model = new DBModel();
+		CollectionViewSource entryViewSource;
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -28,9 +31,12 @@ namespace WPF_showcase
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 
-			System.Windows.Data.CollectionViewSource entryViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("entryViewSource")));
+            entryViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("entryViewSource")));
 			// Załaduj dane poprzez ustawienie właściwości CollectionViewSource.Source:
 			// entryViewSource.Źródło = [ogólne źródło danych]
+			_model.Entries.Load();
+			entryViewSource.Source = _model.Entries.Local.Where(x=>(x.EntryDate>calendar.DisplayDate
+			&& x.EntryDate < calendar.DisplayDate.AddDays(1)));
 		}
 
 		private void AddEntryClick(object sender, RoutedEventArgs e)
@@ -42,12 +48,23 @@ namespace WPF_showcase
 
 		private void DeleteEntryClick(object sender, RoutedEventArgs e)
 		{
-			
+			var result = MessageBox.Show("Czy jesteś pewien?","WPF Showcase",MessageBoxButton.YesNo);
+			if (result == MessageBoxResult.Yes) {
+				Entry entryToDelete = (Entry)Entries.SelectedItem;
+				_model.Entries.Remove(entryToDelete);
+				_model.SaveChanges();
+				entryViewSource.Source = _model.Entries.Local.Where(x => (x.EntryDate > calendar.DisplayDate));
+			};
 		}
 
         private void LoadData(object sender, SelectionChangedEventArgs e)
         {
+			
+        }
 
+        private void RowClick(object sender, MouseButtonEventArgs e)
+        {
+			deleteButton.IsEnabled = true;
         }
     }
 }

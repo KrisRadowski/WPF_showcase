@@ -21,13 +21,19 @@
             <RowDefinition Height="45*"/>
         </Grid.RowDefinitions>
         <Viewbox HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Width="370">
-            <Calendar SelectedDatesChanged="LoadData" HorizontalAlignment="Center"/>
+            <Calendar x:Name="calendar" SelectedDatesChanged="LoadData" HorizontalAlignment="Center"/>
         </Viewbox>
         <TextBlock Grid.Column="1" Grid.ColumnSpan="2" FontSize="24" FontWeight="Bold" Margin="0,0,0,0" HorizontalAlignment="Center">
             data
         </TextBlock>
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="2" Margin="10" Grid.Row="1" ItemsSource="{Binding}"/>
+        <DataGrid x:Name="Entries" Grid.Column="1" Grid.ColumnSpan="2" Margin="10" Grid.Row="1" ItemsSource="{Binding}">
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseLeftButtonUp" Handler="RowClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
         <Button Content="Dodaj wpis" Click="AddEntryClick" Grid.Column="1" HorizontalAlignment="Center" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Center" Width="auto" FontSize="24"/>
-        <Button Content="Usuń wpis" Click="DeleteEntryClick" Grid.Column="2" HorizontalAlignment="Center" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Center" Width="auto" FontSize="24" IsEnabled="False"/>
+        <Button x:Name="deleteButton" Content="Usuń wpis" Click="DeleteEntryClick" Grid.Column="2" HorizontalAlignment="Center" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Center" Width="auto" FontSize="24" IsEnabled="False"/>
     </Grid>
 </Window>
