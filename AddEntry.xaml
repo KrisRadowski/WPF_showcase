@@ -23,13 +23,13 @@
         <TextBlock VerticalAlignment="Center">
             Data: 
         </TextBlock>
-        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <DatePicker x:Name="entryDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="2" VerticalAlignment="Center">
            Czas:
         </TextBlock>
         <StackPanel  Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch" AutomationProperties.Name="timeStackPanel">
-            <TextBox x:Name="timeTextBox" Width="50" Text="08:00" IsEnabled="False"/>
-            <StackPanel x:Name="timeStackPanel" Orientation="Vertical">
+            <TextBox x:Name="entryTextBox" Width="50" Text="08:00" IsEnabled="False"/>
+            <StackPanel x:Name="entryStackPanel" Orientation="Vertical">
                 <RepeatButton Click="UpButton_Click">↑</RepeatButton>
                 <RepeatButton Click="DownButton_Click">↓</RepeatButton>
             </StackPanel>
@@ -37,7 +37,7 @@
         <TextBlock Grid.Row="3" VerticalAlignment="Center">
             Alarm: 
         </TextBlock>
-        <DatePicker Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <DatePicker x:Name="alarmDatePicker"  Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">
              Czas:
         </TextBlock>
@@ -48,10 +48,10 @@
                 <RepeatButton Click="DownButton_Click">↓</RepeatButton>
             </StackPanel>
         </StackPanel>
-        <TextBlock Grid.Row="1">
+        <TextBlock  Grid.Row="1">
             Opis:
         </TextBlock>
-        <TextBox Grid.Row="2" Grid.ColumnSpan="4"/>
-        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">Zapisz</Button>
+        <TextBox x:Name="entryContent" Grid.Row="2" Grid.ColumnSpan="4"/>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Click="SaveButton_Click">Zapisz</Button>
     </Grid>
 </Window>

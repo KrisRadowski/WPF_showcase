@@ -2,6 +2,7 @@ namespace WPF_showcase
 {
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
 	using System.Data.Entity;
 	using System.Linq;
 
@@ -26,6 +27,7 @@ namespace WPF_showcase
 
 	public class Entry
 	{
+		[Key]
 	    public int Id { get; set; }
 	    public DateTime EntryDate { get; set; }
 		public string EntryContent { get; set; }
@@ -34,6 +36,7 @@ namespace WPF_showcase
 
 	public class Alarm
 	{
+		[Key]
 		public int AlarmId { get; set; }
 		public DateTime AlarmDate { get; set; }
 		public bool Enabled { get; set; }

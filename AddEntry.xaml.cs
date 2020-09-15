@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -35,8 +36,8 @@ namespace WPF_showcase
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
 			TextBox tb = null;
-			if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("timeStackPanel")) {
-				tb = timeTextBox;
+			if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("entryStackPanel")) {
+				tb = entryTextBox;
 			} else if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("alarmStackPanel")) {
 				tb = alarmTextBox;
 			}
@@ -52,9 +53,9 @@ namespace WPF_showcase
 		private void DownButton_Click(object sender, RoutedEventArgs e)
 		{
 			TextBox tb = null;
-			if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("timeStackPanel"))
+			if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("entryStackPanel"))
 			{
-				tb = timeTextBox;
+				tb = entryTextBox;
 			}
 			else if (((StackPanel)((RepeatButton)sender).Parent).Name.Equals("alarmStackPanel"))
 			{
@@ -67,6 +68,46 @@ namespace WPF_showcase
 			}
 			else dateTime = dateTime.AddMinutes(-15);
 			tb.Text = dateTime.ToString("HH:mm");
+		}
+
+		private void SaveButton_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				DateTime entryDateTime = (DateTime)entryDatePicker.SelectedDate;
+				DateTime entryTime = GetTimeFromTextBox(entryTextBox);
+				entryDateTime = entryDateTime.AddHours(entryTime.Hour).AddMinutes(entryTime.Minute);
+				DateTime alarmDateTime = (DateTime)alarmDatePicker.SelectedDate;
+				DateTime alarmTime = GetTimeFromTextBox(alarmTextBox);
+				alarmDateTime = alarmDateTime.AddHours(alarmTime.Hour).AddMinutes(alarmTime.Minute);
+				using (var db = new DBModel())
+				{
+					db.Entries.Add(
+						new Entry
+						{
+							EntryDate = entryDateTime,
+							EntryContent = entryContent.Text,
+							Alarm = new Alarm
+							{
+								AlarmDate = alarmDateTime,
+								Enabled = true
+							}
+						});
+					db.SaveChanges();
+				}
+			}
+			catch (InvalidOperationException)
+			{
+				MessageBox.Show("Nie wybrano daty :(");
+			}
+			catch (ProviderIncompatibleException)
+			{
+				MessageBox.Show("Nie można połączyć się z serwerem :(");
+			}
+			catch (Exception ex) {
+				MessageBox.Show(ex.StackTrace);
+			}
+			//Close();
 		}
 	}
 }
