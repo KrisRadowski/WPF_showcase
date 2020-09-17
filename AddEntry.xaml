@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_showcase"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="AddEntry" Height="450" Width="300">
     <Grid>
@@ -23,7 +24,7 @@
         <TextBlock VerticalAlignment="Center">
             Data: 
         </TextBlock>
-        <DatePicker x:Name="entryDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <DatePicker x:Name="entryDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" SelectedDate="{x:Static sys:DateTime.Now}"/>
         <TextBlock Grid.Column="2" VerticalAlignment="Center">
            Czas:
         </TextBlock>
@@ -37,7 +38,7 @@
         <TextBlock Grid.Row="3" VerticalAlignment="Center">
             Alarm: 
         </TextBlock>
-        <DatePicker x:Name="alarmDatePicker"  Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <DatePicker x:Name="alarmDatePicker"  Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" SelectedDate="{x:Static sys:DateTime.Now}"/>
         <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">
              Czas:
         </TextBlock>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace WPF_showcase
 {
@@ -26,6 +27,9 @@ namespace WPF_showcase
 		public MainWindow()
 		{
 			InitializeComponent();
+			NotifyIcon notifyIcon = new NotifyIcon();
+			//notifyIcon.Icon = 
+			notifyIcon.Visible = true;
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -48,19 +52,22 @@ namespace WPF_showcase
 
 		private void DeleteEntryClick(object sender, RoutedEventArgs e)
 		{
-			var result = MessageBox.Show("Czy jesteś pewien?","WPF Showcase",MessageBoxButton.YesNo);
+			var result = System.Windows.MessageBox.Show("Czy jesteś pewien?","WPF Showcase",MessageBoxButton.YesNo);
 			if (result == MessageBoxResult.Yes) {
 				Entry entryToDelete = (Entry)Entries.SelectedItem;
 				_model.Entries.Remove(entryToDelete);
 				_model.SaveChanges();
-				entryViewSource.Source = _model.Entries.Local.Where(x => (x.EntryDate > calendar.DisplayDate));
+				entryViewSource.Source = _model.Entries.Local.Where(x => (x.EntryDate > calendar.SelectedDate
+				&& x.EntryDate < calendar.SelectedDate.Value.AddDays(1)));
 			};
 		}
 
         private void LoadData(object sender, SelectionChangedEventArgs e)
         {
-			
-        }
+			entryViewSource.Source = null;
+			entryViewSource.Source = _model.Entries.Local.Where(x => (x.EntryDate > calendar.SelectedDate
+			&& x.EntryDate < calendar.SelectedDate.Value.AddDays(1)));
+		}
 
         private void RowClick(object sender, MouseButtonEventArgs e)
         {

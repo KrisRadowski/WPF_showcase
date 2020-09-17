@@ -94,6 +94,7 @@ namespace WPF_showcase
 							}
 						});
 					db.SaveChanges();
+					Close();
 				}
 			}
 			catch (InvalidOperationException)
@@ -107,7 +108,6 @@ namespace WPF_showcase
 			catch (Exception ex) {
 				MessageBox.Show(ex.StackTrace);
 			}
-			//Close();
 		}
 	}
 }
