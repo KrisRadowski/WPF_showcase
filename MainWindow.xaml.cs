@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
+using System.IO;
+using System.Resources;
 
 namespace WPF_showcase
 {
@@ -28,11 +30,26 @@ namespace WPF_showcase
 		{
 			InitializeComponent();
 			NotifyIcon notifyIcon = new NotifyIcon();
-			//notifyIcon.Icon = 
+			using (ResXResourceSet resourceSet = new ResXResourceSet(@"..\..\Properties\Resources.resx")) {
+				notifyIcon.Icon = (System.Drawing.Icon)resourceSet.GetObject("Icon",true);
+			}
 			notifyIcon.Visible = true;
+			System.Windows.Forms.ContextMenu contextMenu = new System.Windows.Forms.ContextMenu();
+			System.Windows.Forms.MenuItem exitItem = new System.Windows.Forms.MenuItem();
+			exitItem.Index = 0;
+			exitItem.Text = "Wyjdź";
+            exitItem.Click += ContextMenuExit;
+			contextMenu.MenuItems.Add(exitItem);
+			notifyIcon.ContextMenu = contextMenu;
 		}
 
-		private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void ContextMenuExit(object sender, EventArgs e)
+        {
+           ((App)System.Windows.Application.Current).Shutdown();
+           //System.Windows.Forms.Application.Exit();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 
             entryViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("entryViewSource")));
